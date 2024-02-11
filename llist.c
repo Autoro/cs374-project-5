@@ -34,7 +34,11 @@ int main (int argc, char* argv[])
         }
         else if (strcmp(arg, "dh") == 0)
         {
-            printf("llist_delete_head()\n");
+            node* node = llist_delete_head(&head);
+            if(node != NULL)
+            {
+                node_free(node);
+            }
         }
         else if (strcmp(arg, "f") == 0)
         {
@@ -62,6 +66,17 @@ void llist_insert_head(node** head, node* n)
 {
     n->next = *head;
     *head = n;
+}
+
+node* llist_delete_head(node** head)
+{
+    node* current = *head;
+    if (current != NULL)
+    {
+        *head = current->next;
+    }
+
+    return current;
 }
 
 void llist_print(node* head)
