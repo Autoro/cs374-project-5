@@ -11,7 +11,7 @@ int main (int argc, char* argv[])
         exit(1);
     }
 
-    node* head = node_alloc(2);
+    node* head = NULL;
 
     int currentArg = 1;
     while (currentArg < argc)
@@ -53,11 +53,20 @@ int main (int argc, char* argv[])
         currentArg++;
     }
 
-    node_free(head); 
+    node_free(head);
+
+    return 0;
 }
 
 void llist_print(node* head)
 {
+    if (head == NULL)
+    {
+        printf("[empty]\n");
+
+        return;
+    }
+    
     node* current = head;
     while (current != NULL)
     {
@@ -70,6 +79,8 @@ void llist_print(node* head)
 
         current = current->next;
     }
+
+    return;
 }
 
 node* node_alloc(int value)
@@ -85,4 +96,6 @@ void node_free(node* n)
 {
     free(n);
     n = NULL;
+
+    return;
 }
