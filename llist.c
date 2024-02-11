@@ -22,8 +22,8 @@ int main (int argc, char* argv[])
             currentArg++;
 
             int value = atoi(argv[currentArg]);
-
-            printf("llist_insert_head(%d)\n", value);
+            node* node = node_alloc(value);
+            llist_insert_head(&head, node);
         }
         else if (strcmp(arg, "it") == 0)
         {
@@ -58,6 +58,12 @@ int main (int argc, char* argv[])
     return 0;
 }
 
+void llist_insert_head(node** head, node* n)
+{
+    n->next = *head;
+    *head = n;
+}
+
 void llist_print(node* head)
 {
     if (head == NULL)
@@ -66,7 +72,7 @@ void llist_print(node* head)
 
         return;
     }
-    
+
     node* current = head;
     while (current != NULL)
     {
