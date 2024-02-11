@@ -81,10 +81,12 @@ void llist_print(node* head)
             printf(" -> ");
         }
 
-        printf("%d\n", current->value);
+        printf("%d", current->value);
 
         current = current->next;
     }
+
+    printf("\n");
 
     return;
 }
