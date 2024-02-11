@@ -43,7 +43,7 @@ int main (int argc, char* argv[])
         }
         else if (strcmp(arg, "f") == 0)
         {
-            printf("llist_free()\n");
+            llist_free(&head);
         }
         else if (strcmp(arg, "p") == 0)
         {
@@ -57,8 +57,6 @@ int main (int argc, char* argv[])
 
         currentArg++;
     }
-
-    node_free(head);
 
     return 0;
 }
@@ -125,6 +123,23 @@ void llist_print(node* head)
     }
 
     printf("\n");
+
+    return;
+}
+
+void llist_free(node** head)
+{
+    node* previous = NULL;
+    node* current = *head;
+    while (current != NULL)
+    {
+        previous = current;
+        current = current->next;
+        
+        node_free(previous);
+    }
+
+    *head = NULL;
 
     return;
 }
